@@ -54,48 +54,19 @@
         </select><br>
       <button onclick="processPhase2()" >Continue</button><br>
    </div>
-<div id="phase3">
-          <h3 style="color:black;">Medical Diagnosis</h3>
-        <select id="select"  name="diagnosis[]" required multiple="multiple"data-placeholder="...select diagnosis...">
-         <option vlaue="medicalexams" >General medical exam</option>
-               <option value="hypertension">Hypertension</option>
-               <option value="hyperlipidemia">Hyperlipidemia</option>
-               <option value="asthma">Asthma</option>
-               <option value="diabetes">Diabetes</option>
-               <option value="backpain">Back pain</option>
-               <option value="anxiety">Anxiety</option>
-               <option value="obesity">Obesity</option>
-               <option value="malaria">Malaria</option>
-               <option value="rhinitis">Allergic rhinitis</option>
-               <option value="esophagitis">Reflux esophagitis</option>
-               <option value="respiratoryproblems">Respiratory problems</option>
-               <option value="hypothyroidism">Hypothyroidism</option>
-               <option value="Visualrefractiveerrors">Visual refractive errors</option>
-               <option value="osteoarthritis">Osteoarthritis</option>
-               <option value="myositis">Fibromyalgia / myositis</option>
-               <option value="fatigue">Malaise and fatigue</option>
-               <option value="painjoint">Pain in joint</option>
-               <option value="acute">Acute laryngopharyngitis</option>
-               <option value="maxillarysinusitis">Acute maxillary sinusitis</option>
-               <option value="depressivedisorder">Major depressive disorder</option>
-               <option value="bronchitis">Acute bronchitis</option>
-               <option value="depressive">Depressive disorder</option>
-               <option value="nailfungus">Nail fungus</option>
-               <option value="atherosclerosis">Coronary atherosclerosis</option>
-               <option value="urinaryinfection">Urinary tract infection</option>
+  <div id="phase3">
+      <label style="color: black;">Diagnosis</label>
+        <select id="diagnosis"  name="diagnosis">
+          <option value="ulcer">Ulcer</option>
+          <option value="backpain">BackPain</option>
+          <option value="fever">Fever</option>
+          <option value="malaria">Malaria</option>
+          <option value="typhoid">Typhoid</option>
+          <option value="daibetes">Daibetes</option>
+          <option value="headache">Headache</option>
         </select><br>
-      <button onclick="processPhase3()" >Continue</button><br>
-
-      <script type="text/javascript">
-           $(document).ready(function(){
-           $('#select').chosen();
-           $("#select").chosen({no_results_text: "Oops, nothing found!"}); 
-
-      });
-    </script>
-
-
-         </div>
+     <button onclick="processPhase3()" >Continue</button>
+    </div>
 
    <div id="phase4">
       <label style="color: black;">Allocate Ward</label>
@@ -169,7 +140,7 @@
     function processPhase4(){
       ward =_("ward").value;
       if(ward.length > 0){
-        _("phase3").style.display ="none";
+        _("phase4").style.display ="none";
         _("show_all_data").style.display = "block";
         _("display_history").innerHTML= history;
         _("display_healthstatus").innerHTML = healthstatus;

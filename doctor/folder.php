@@ -305,8 +305,15 @@
             <th> ml</th>
              <th>Add or Remove</th>
           </tr>
+
            <?php 
             if(isset($_POST['save'])){
+              if(empty($_SESSION["refreshed_round"])){
+              $_SESSION["refreshed_round"]=0;
+              }
+              $td =date('dmy');
+              $tm =date("dmy", time()+86400); 
+              $dart =$td . $_SESSION["refreshed_round"]+=1;
               if(isset($_GET['patient_id']));
               $id=$_GET['patient_id'];
               $medicinename =$_POST['medicinename'];
@@ -320,7 +327,6 @@
               $res=mysqli_query($connect,$qq);
               $row = mysqli_fetch_array($res);
               $name = $row['name'];
-              $fourrandomdigit = mt_rand(1000,9999);
 
               $allMedicenes = [];
             
@@ -329,8 +335,7 @@
               }
               $resp = json_encode($allMedicenes);
 
-                 $query = "INSERT INTO drugs(medicinename,diagnosis,ward,healthstatus,history,patient_id,patient_name,doctor,uniquecode,visit_date)VALUES('".$resp."','$diagnosis ','$ward','$healthstatus','$history','$id','$name','$adb','$fourrandomdigit',now())";
-              echo"<script>alert('$query')</script>";
+              $query = "INSERT INTO drugs(medicinename,diagnosis,ward,healthstatus,history,patient_id,patient_name,doctor,uniquecode,visit_date)VALUES('".$resp."','$diagnosis ','$ward','$healthstatus','$history','$id','$name','$adb','$dart',now())";
               $result =mysqli_query($connect, $query);
               $qqq ="SELECT * FROM drugs WHERE patient_id='$id'";
               $ress=mysqli_query($connect,$qqq);
@@ -374,7 +379,7 @@
       });
 
     });
-  </script>
+   </script>
 
     <script type="text/javascript">
       $(document).ready(function(){

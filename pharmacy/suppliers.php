@@ -1,8 +1,21 @@
 <?php 
  include("header.php");
  include("../db/connection.php");
-  
- ?>
+
+ if(isset($_POST['add'])){
+            $company_name =$_POST['company_name'];
+            $contact =$_POST['contact'];
+            $address =$_POST['address'];
+            $payment_status =$_POST['payment_status'];
+         $query ="INSERT INTO drugsuppliers(company_name,contact,address,payment_status)VALUES('$company_name','$contact','$address','$payment_status')";
+         $result =mysqli_query($connect,$query) or die(mysqli_error($connect));
+         if($result){
+            echo "<script>alert('The supplier is added sucessfully')</script>";
+         }else{
+            echo "<script>alert('something went wrong')</script>";
+         }
+      }
+   ?>
 
 <!DOCTYPE html>
 <html>
@@ -71,6 +84,90 @@
     padding-top: 3%;
     margin-bottom: 3%;
   }
+
+  body{
+        background: #F2F3F4;
+    }
+    .main{
+        background:white;
+        margin-top: 3%;
+        height: 500px;
+        margin-left: 5%;
+        margin-right: 5%;
+        border-radius: 10px;
+        margin-bottom: 3%;
+    }
+    
+    .main h3{
+        color: red;
+        margin-top: -10px;
+        padding-left: 20px;
+    }
+    .main p{
+        margin-top: -20px;
+        padding-left: 20px;
+        color: #AEB6BF;
+    }
+    .fom{
+        background: transparent;
+        height: 80%;
+        margin-left: 130px;
+        margin-right: 20px;
+        padding-left: 10px;
+        padding-top: 0px;
+    }
+
+    .fom .fom1 input{
+      height: 25px;
+      width: 40%;
+      margin-bottom: 20px;
+    }
+    .fom .fom1 label{
+        font-size: 20px;
+        color:#D35400;
+    }
+    .fom .fom1 select{
+        height: 30px;
+      width: 40.7%;
+      margin-bottom: 20px;
+    }
+    .fom2{
+        margin-left: 43%;
+        margin-top: -37.5%;
+    }
+
+    .fom .fom2 input{
+      height: 25px;
+      width: 75%;
+      margin-bottom: 20px;
+    }
+    .fom .fom2 label{
+        font-size: 20px;
+        color:#D35400;
+    }
+    .fom .fom2 select{
+        height: 30px;
+      width: 76%;
+      margin-bottom: 20px;
+    }
+    .main h2{
+        text-align: center;
+        margin-top: -20px;
+        color: #1C2833;
+    }
+    .done{
+        width: 120px;
+        margin-left: 37%;
+        height: 30px;
+    }
+    .main img{
+        background: red;
+        height: 30px;
+        width: 30px;
+        border-radius: 20px;
+        margin-left: 98.5%;
+        margin-top: -1%;
+    }
 </style>
 <body>
     <div class="woo">
@@ -80,99 +177,64 @@
   </div>
     
       <div class="pat">
-        <h4 style="margin-left:10px">List of All Drugs in Stock</h4><br>
-        <?php 
-      $query ="SELECT * FROM pharmacyinventory ORDER BY purchaseddate DESC";
-      $result =mysqli_query($connect, $query);
-       
-        echo"<table cellspacing=0 cellpadding =1 border=1  class='display'  id='table_id' data-sortable='false' data-role='table'>
-        <thead>
-        <tr border=0.1 >
-           <th style='background:black;color:white;width:10%' data-sortable='false'data-format='date' data-format-mask='%d-%m-%y'>Purchased Date</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false'>Medicine Name</th>
-           <th style='background:black;color:white;width:15%' data-sortable='false'>Quantity</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false'>Supplier</th>
-           <th style='background:black;color:white;width:5%' data-sortable='false'>Category</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false' data-format='money'>Cost Price</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false'>Selling Price</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false'>No. Box</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false'>Capacity</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false'>Group Drugs</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false'>Expiry Date</th>
-           <th style='background:black;color:white;width:10%' data-sortable='false'>Update Drug</th>
+        <h4 style="margin-left:10px">List of All Drug Suppliers to Classic Care Clinc</h4><br>
 
-      
-        </tr>
-        </thead>
-     ";
+        
+        
+    </div>
+    <div class="main">
+        <a href="medicinals.php"><img src="../image/close1.png" alt="image is required"></a>
+        <h3>Add Medicine</h3>
+        <p>Use this form to add medicine</p>
+        <h2>Classic Care Clinic Drugs Inventories</h2>
+        
+
+            <form class="fom" method="POST" enctype="multipart/form-data">
+                <div class="fom1">
+                <label>Company Name</label><br>
+                <input type="text" name="company_name" placeholder="Enter suppier name"><br>   
+                <label>contact</label><br>
+                <input type="text" name="contact" placeholder="Enter phone number"><br>
+
+                <label>Address</label><br>
+                <input type="text" name="address" placeholder="Enter company address"><br>  
+                <label>Payment_Satus</label><br>
+                <select  name="payment_status">
+                    <option>........Choose one item below........</option>
+                    <option value="single">Full payment </option>
+                    <option value="box">Part Payment</option>
+                    <option value="bottle">Credit</option>
+                </select><br>
+                <label>Purchased Date</label><br>
+                <input type="text" name="purchaseddate" placeholder="Enter the day the drug was purchased"><br>
+                </div>
 
 
-     if(mysqli_num_rows($result)<1){
-      echo"<tr><td style=' border: 1pt double ;background:white;color:black;'>Such medicine is not in stock</<td></tr>";
-     }
-
-     while ($row= mysqli_fetch_array($result)) {
-
-                  $purchaseddate = $row['purchaseddate'];
-                  $medicinename = $row['medicinename'];
-                  $drugquantity = $row['drugquantity'];
-                  $supplier = $row['supplier'];
-                  $category = $row['category'];
-                  $costprice = $row['costprice'];
-                  $sellingprice =$row['sellingprice'];
-                  $boxnumber=$row['boxnumber'];
-                  $capacity=$row['capacity'];
-                  $groupitem=$row['groupitem'];
-                  $expirydate=$row['expirydate'];
-
-                     echo"<tbody>";
-                      echo "<tr>
-                      <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$purchaseddate</td>
-
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$medicinename</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$drugquantity</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$supplier</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$category</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$costprice</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$sellingprice</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$boxnumber</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$capacity</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$groupitem</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$expirydate</td>
-
-                        ";
-
-                         echo  "<td style=' border: 0.1pt solid black;'>";
-
-                         echo" 
-                               <a href='editdrug.php?medicine_id=".$row['medicine_id']." '> <i class='fas fa-pen-square' style='width:100%;height:100%;font-size:24px;color:green'></i></a>
-                               <a href='removedrug.php?medicine_id=".$row['medicine_id']." '> <i class='fas fa-trash-alt' style='width:100%;height:100%;font-size:22px;color:red;margin-left:24px;margin-top:-30px'></i></a>
-                                
-
-                               
-                              
-                             
-                               ";                       
-                                                                                                  
-                        echo" </td>
-                    </tr>";
-
-                        
-
-               echo"</tbody";        
-             }
-
-      echo "
+            <div class="fom2">
+                <label>Supplier</label><br>
+                <input type="text" name="supplier" placeholder="Enter company that supplied drug"><br>  
+                <label>Group</label><br>
+                <select id="groupitem"  name="groupitem">
+                    <option>........Choose one item below........</option>
+                    <option value="single">Single Medicine </option>
+                    <option value="box">Box of Medicine</option>
+                    <option value="bottle">Bottle of Medicine</option>
+                </select><br>
     
-    <tbody>
-
-      
-    </tbody>
-</table>
-      ";
-
-     ?>
-
+                <label>Total Box/Bottle of Drug</label><br>
+                <input type="text" name="boxnumber" placeholder="Enter total boxes of drug"><br>
+                <label>Quantity of Drug</label><br>
+                <input type="text" name="drugquantity" placeholder="Enter total number of drug"><br>
+                <label>Expiry Date</label><br>
+                <input type="text" name="expirydate" placeholder="Enter Expiry Date of drug"><br>
+                    
+                </div>
+                <input class="done" type="submit" name="submit" value="Done" style="background:green;border-color:green;color: white;">
+                
+                
+            </form>
+    
+        
         
     </div>
         

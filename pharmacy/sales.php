@@ -12,22 +12,33 @@
 <body>
     <p>This is the Sales Page</p>
     <?php
-    $diet =date('dmy'); 
-
-       echo"<br>";
 
        session_start();
        if(empty($_SESSION["refreshed_round"])){
           $_SESSION["refreshed_round"]=0;
         }
-          $_SESSION["refreshed_round"]++;
-          $dart =$_SESSION["refreshed_round"]++;
-        echo "$diet" . $_SESSION["refreshed_round"];
-
-        echo"<br>";
-        echo"$dart";
-     
+          $td =date('dmy');
+          $tm =date("dmy", time()+86400); 
+          $dart =$td . $_SESSION["refreshed_round"]+=1;
+         echo "$dart <br>"; 
+         
+        
+        
+         
     ?>
+    <?php 
+      $td =date('dmy');
+       
+      echo $tm."<br>";
+      if($td ==$tm){
+         $_SESSION["refreshed_round"]=0;
+      }
+      $wee =$tm.$_SESSION["refreshed_round"];
+      echo"$wee <br>";
+          
+     ?>
+
+   
 
 
 </body>

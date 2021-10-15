@@ -61,7 +61,7 @@
 		    <li><a href="sales.php"><i class="fas fa-cart-plus"></i>Sales</a></li>
 		    <li><a href="categories.php"><i class="fas fa-tags"></i>Categories</a></li>
 		    <li><a href="suppliers.php"><i class="fas fa-truck-moving"></i>Suppliers</a></li>
-		    <li><a href="customers.php"><i class="fas fa-user-friends"></i></i>Customers</a></li>
+		    <li><a href="pharmacy.php"><i class="fas fa-user-friends"></i></i>Pharmacy</a></li>
 	    	<li><a href="users.php"><i class="fas fa-users"></i>Users</a></li>
 		    <li><a href="reports.php"><i class="fas fa-notes-medical"></i></i>Reports</a></li>
 		    <li><a href="settings.php"><i class="fas fa-cog"></i>Settings</a></li>	
