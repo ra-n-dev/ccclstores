@@ -5,17 +5,19 @@ include("../db/connection.php");
 
    if(isset($_POST['submit'])){
               $medicinename =$_POST['medicinename'];
-              $drugquantity =$_POST['drugquantity'];
+              $quantity =$_POST['drugquantity'];
               $purchaseddate =$_POST['purchaseddate'];
-              $groupitem = $_POST['groupitem'];
+              $unitmeasurement = $_POST['unitmeasurement'];
               $category=$_POST['category'];
               $capacity =$_POST['capacity'];
-              $costprice =$_POST['costprice'];
+              $totalcostprice =$_POST['costprice'];
+              $sellingprice=$_POST['sellingprice'];
               $expirydate = $_POST['expirydate'];
-              $boxnumber = $_POST['boxnumber'];
-              $supplier = $_POST['supplier'];
+              $unitcostprice = $_POST['boxnumber'];
+              $suppliername = $_POST['supplier'];
 
-                 $query = "INSERT INTO pharmacyinventory(medicinename,drugquantity,purchaseddate,groupitem,category,capacity,costprice,sellingprice,invetdate,expirydate,boxnumber,supplier)VALUES('$medicinename','$drugquantity ','$purchaseddate','$groupitem','$category','$capacity','$costprice','soon',now(),'$expirydate','$boxnumber','$supplier')";
+                 $query = "INSERT INTO drug_inventory_table(drug_name,quantity,purchase_date,unit_measurement,category,capacity,total_cost_price,selling_price,stock_date,expiry_date,unit_cost_price,supplier_name
+              )VALUES('$medicinename','$quantity ','$purchaseddate','$unitmeasurement','$category','$capacity','$totalcostprice','$sellingprice', now(),'$expirydate','$unitcostprice','$suppliername')";
 
                 $result =mysqli_query($connect, $query) or die(mysqli_error($connect));
                 
@@ -68,13 +70,13 @@ include("../db/connection.php");
  		margin-left: 130px;
  		margin-right: 20px;
  		padding-left: 10px;
- 		padding-top: 0px;
+      margin-top: 0%;
  	}
 
  	.fom .fom1 input{
       height: 25px;
       width: 40%;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
  	}
  	.fom .fom1 label{
  		font-size: 20px;
@@ -83,17 +85,17 @@ include("../db/connection.php");
  	.fom .fom1 select{
  		height: 30px;
       width: 40.7%;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
  	}
  	.fom2{
  		margin-left: 43%;
- 		margin-top: -37.5%;
+      margin-top: -38.9%;
  	}
 
  	.fom .fom2 input{
       height: 25px;
       width: 75%;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
  	}
  	.fom .fom2 label{
  		font-size: 20px;
@@ -102,17 +104,18 @@ include("../db/connection.php");
  	.fom .fom2 select{
  		height: 30px;
       width: 76%;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
  	}
  	.main h2{
  		text-align: center;
  		margin-top: -20px;
  		color: #1C2833;
  	}
- 	.done{
- 		width: 120px;
- 		margin-left: 37%;
- 		height: 30px;
+ 	.don{
+
+      border-radius: 5px;
+      border-color: transparent;
+      margin-top: 4%;
  	}
  	.main img{
  		background: red;
@@ -153,14 +156,17 @@ include("../db/connection.php");
  				<input type="text" name="costprice" placeholder="Enter cost price of drug"><br>
  				<label>Purchased Date</label><br>
  				<input type="text" name="purchaseddate" placeholder="Enter the day the drug was purchased"><br>
+
+            <label>Selling Price</label><br>
+            <input type="text" name="sellingprice" placeholder="Enter selling price"> 
  				</div>
 
 
  			<div class="fom2">
  				<label>Supplier</label><br>
  				<input type="text" name="supplier" placeholder="Enter company that supplied drug"><br>	
-                <label>Group</label><br>
- 				<select id="groupitem"  name="groupitem">
+                <label>Unit Measurement</label><br>
+ 				<select id="groupitem"  name="unitmeasurement">
  					<option>........Choose one item below........</option>
  					<option value="single">Single Medicine </option>
  					<option value="box">Box of Medicine</option>
@@ -173,10 +179,12 @@ include("../db/connection.php");
  				<input type="text" name="drugquantity" placeholder="Enter total number of drug"><br>
  				<label>Expiry Date</label><br>
  				<input type="text" name="expirydate" placeholder="Enter Expiry Date of drug"><br>
+
+
+            <input class="don" type="submit" name="submit" value="Done" style="background:#A04000;color: white;height: 30px;width: 76.5%;">
  					
  				</div>
- 				<input class="done" type="submit" name="submit" value="Done" style="background:green;border-color:green;color: white;">
- 				
+
  				
  			</form>
  	

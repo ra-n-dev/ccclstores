@@ -2,7 +2,7 @@
  include("header.php");
  include("../db/connection.php");
 
- if(isset($_POST['add'])){
+ if(isset($_POST['submit'])){
             $company_name =$_POST['company_name'];
             $contact =$_POST['contact'];
             $address =$_POST['address'];
@@ -36,10 +36,11 @@
 
   }
   .woo{
-      width: 99.7%;
+      width: 100%;
       overflow-x: hidden;
       overflow-y: scroll;
       height: 91vh;
+
   }
 
   .woo::-webkit-scrollbar-track {
@@ -65,19 +66,7 @@
    height: 25vh;
   }
   .addd a{
-      border-radius: 20px;
-      background: #82E0AA;
-       border-color: #82E0AA ;
-      padding-top: 15px;
-      margin-left: 20px;
-      padding-bottom: 15px;
-      padding-left: 15px;
-      padding-right: 15px;
-      margin-left: 89%;
-      margin-bottom: 20px;
-      text-decoration: none;
-      font-size: 18px;
-      color: blue;
+   
 
     }
     .addd{
@@ -96,6 +85,7 @@
         margin-right: 5%;
         border-radius: 10px;
         margin-bottom: 3%;
+        display: none;
     }
     
     .main h3{
@@ -108,48 +98,40 @@
         padding-left: 20px;
         color: #AEB6BF;
     }
+
     .fom{
         background: transparent;
         height: 80%;
-        margin-left: 130px;
+        margin-left: 19%;
+        width: 60%;
         margin-right: 20px;
         padding-left: 10px;
         padding-top: 0px;
     }
-
+     .fom .fom1{
+        background: transparent;
+        width: 100%;
+     }
     .fom .fom1 input{
-      height: 25px;
-      width: 40%;
+      margin-left: 15%; 
+      height: 27px;
+      width: 70%;
       margin-bottom: 20px;
     }
     .fom .fom1 label{
+        margin-left: 15%;
         font-size: 20px;
         color:#D35400;
     }
     .fom .fom1 select{
-        height: 30px;
-      width: 40.7%;
+      margin-left: 15%; 
+      height: 31px;
+      width: 71.3%;
       margin-bottom: 20px;
-    }
-    .fom2{
-        margin-left: 43%;
-        margin-top: -37.5%;
-    }
 
-    .fom .fom2 input{
-      height: 25px;
-      width: 75%;
-      margin-bottom: 20px;
     }
-    .fom .fom2 label{
-        font-size: 20px;
-        color:#D35400;
-    }
-    .fom .fom2 select{
-        height: 30px;
-      width: 76%;
-      margin-bottom: 20px;
-    }
+  
+  
     .main h2{
         text-align: center;
         margin-top: -20px;
@@ -157,7 +139,6 @@
     }
     .done{
         width: 120px;
-        margin-left: 37%;
         height: 30px;
     }
     .main img{
@@ -168,25 +149,54 @@
         margin-left: 98.5%;
         margin-top: -1%;
     }
+    .pat ul {
+        list-style: none;
+        display: flex; 
+        width: 100%; 
+
+      }
+      .pat ul li{
+        margin-top: 2%;
+        width: 100%;
+
+      }
+
+      .pat ul li a{
+        margin-right:2% ;
+        padding-top: 1%;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-bottom: 1%;
+        margin-left: 65%;
+        text-decoration: none;
+        background: lightblue;
+        border-radius: 5px;
+        margin-top: 5%;
+      }
+      .pat ul li h4{
+        margin-top: -2%;
+      }
 </style>
 <body>
     <div class="woo">
     <div class="addd">
 
-      <a href="addmedicine.php"><i class="fas fa-plus"></i>new</a>
   </div>
     
       <div class="pat">
-        <h4 style="margin-left:10px">List of All Drug Suppliers to Classic Care Clinc</h4><br>
+        <ul>
+            <li><h4 style="margin-left:10px">List of All Drug Suppliers to Classic Care Clinic</h4><br></li>
+            <li><a id="new" href="#"><i class="fas fa-plus"></i>new</a></li>
+        </ul>
 
         
         
     </div>
-    <div class="main">
-        <a href="medicinals.php"><img src="../image/close1.png" alt="image is required"></a>
-        <h3>Add Medicine</h3>
-        <p>Use this form to add medicine</p>
-        <h2>Classic Care Clinic Drugs Inventories</h2>
+    <div class="main" id="add">
+        <a id="back" href="#"><img src="../image/close1.png" alt="image is required"></a>
+        <h3>Add Drug Spplier</h3>
+        <p>Use this form to add supplier</p>
+        <h2>Classic Care Clinic Drug Suppliers Add Section</h2>
         
 
             <form class="fom" method="POST" enctype="multipart/form-data">
@@ -198,44 +208,85 @@
 
                 <label>Address</label><br>
                 <input type="text" name="address" placeholder="Enter company address"><br>  
-                <label>Payment_Satus</label><br>
+                <label>Payment Satus</label><br>
                 <select  name="payment_status">
                     <option>........Choose one item below........</option>
                     <option value="single">Full payment </option>
                     <option value="box">Part Payment</option>
                     <option value="bottle">Credit</option>
                 </select><br>
-                <label>Purchased Date</label><br>
-                <input type="text" name="purchaseddate" placeholder="Enter the day the drug was purchased"><br>
                 </div>
-
-
-            <div class="fom2">
-                <label>Supplier</label><br>
-                <input type="text" name="supplier" placeholder="Enter company that supplied drug"><br>  
-                <label>Group</label><br>
-                <select id="groupitem"  name="groupitem">
-                    <option>........Choose one item below........</option>
-                    <option value="single">Single Medicine </option>
-                    <option value="box">Box of Medicine</option>
-                    <option value="bottle">Bottle of Medicine</option>
-                </select><br>
-    
-                <label>Total Box/Bottle of Drug</label><br>
-                <input type="text" name="boxnumber" placeholder="Enter total boxes of drug"><br>
-                <label>Quantity of Drug</label><br>
-                <input type="text" name="drugquantity" placeholder="Enter total number of drug"><br>
-                <label>Expiry Date</label><br>
-                <input type="text" name="expirydate" placeholder="Enter Expiry Date of drug"><br>
-                    
-                </div>
-                <input class="done" type="submit" name="submit" value="Done" style="background:green;border-color:green;color: white;">
+                <center>
+                    <input class="done" type="submit" name="submit" value="Done" style="background:green;border-color:green;color: white;">
+                </center>
                 
                 
             </form>
     
         
         
+    </div>
+    <div class="lists" id="list">
+        <h3>Here is the list</h3>
+        <?php 
+          $query ="SELECT * FROM drugsuppliers ";
+          $result =mysqli_query($connect,$query);
+
+        echo"<table cellspacing=0 cellpadding =1 border=1  class='display'  id='table_id' data-sortable='false' data-role='table'>
+        <thead>
+        <tr border=0.1 >
+           <th style='background:black;color:white;width:10%' data-sortable='false'>Company Name</th>
+           <th style='background:black;color:white;width:10%' data-sortable='false'>Address</th>
+           <th style='background:black;color:white;width:15%' data-sortable='false'>Contact</th>
+           <th style='background:black;color:white;width:10%' data-sortable='false'>Payment Status</th>
+      
+        </tr>
+        </thead>
+     ";
+
+       if(mysqli_num_rows($result)<1){
+        echo"<tr><td style=' border: 1pt double ;background:white;color:black;'>Such medicine is not in stock</<td></tr>";
+       }  
+
+        while ($row= mysqli_fetch_array($result)) {
+
+                  $company_name = $row['company_name'];
+                  $address = $row['address'];
+                  $contact = $row['contact'];
+                  $payment_status = $row['payment_status'];
+                 
+
+                     echo"<tbody>";
+                      echo"<div>
+                        <ul>
+                         <li>$company_name</li>
+                         <li>$address</li>
+                         <li>$contact</li>
+                         <li>$payment_status</li>
+
+                        </ul>
+
+
+                      ";
+                      echo"</div>";
+
+                        
+
+               echo"</tbody";        
+             }
+
+      echo "
+    
+    <tbody>
+
+      
+    </tbody>
+</table>
+      ";
+
+     
+         ?>
+
     </div>
         
     </div>
@@ -245,6 +296,19 @@
 <script src="../js/jquery-3.6.0.min.js"></script>
 
 <script>
+
+     $("#new").click(function () {
+       $("#list").css("display", "none");
+       $("#add").css("display","block");
+       
+      });
+     $("#back").click(function () {
+       $("#list").css("display", "block");
+       $("#add").css("display","none");
+       
+      });
+
+
     $(document).ready( function () {
 
         

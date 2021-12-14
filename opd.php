@@ -24,7 +24,7 @@
 
   	
 
-  	$query = "	INSERT INTO patientvital(name,occupation,placeofbirth,reg_date,temp,religion,relative_phone,dob,nationality,weight,pulse,bp,phone,age,gender,height,marriedstatus,history,diagnosis,prescription)value('$patientname','$occupation','$placeofbirth',now(),'$temperature','$religion','$relative_phone','$dob','$nationality','$weight','$pulse','$bp','$phone','$age','$gender','$height','$married_status','No medical history yet','No medical diagnosis yet','No medicine prescribed yet')";
+  	$query = "	INSERT INTO patient_table(name,occupation,placeofbirth,reg_date,temp,religion,relative_contact,dob,nationality,weight,pulse,bp,contact,age,gender,height,marital_status,unique_code)value('$patientname','$occupation','$placeofbirth',now(),'$temperature','$religion','$relative_phone','$dob','$nationality','$weight','$pulse','$bp','$phone','$age','$gender','$height','$married_status','1245')";
   	$result =mysqli_query($connect, $query) or die(mysqli_error($connect));
   	if($result){
   		header("Location:index.php");

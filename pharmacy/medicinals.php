@@ -82,7 +82,7 @@
       <div class="pat">
         <h4 style="margin-left:10px">List of All Drugs in Stock</h4><br>
         <?php 
-      $query ="SELECT * FROM pharmacyinventory ORDER BY purchaseddate DESC";
+      $query ="SELECT * FROM drug_inventory_table ORDER BY purchase_date DESC";
       $result =mysqli_query($connect, $query);
        
         echo"<table cellspacing=0 cellpadding =1 border=1  class='display'  id='table_id' data-sortable='false' data-role='table'>
@@ -113,17 +113,17 @@
 
      while ($row= mysqli_fetch_array($result)) {
 
-                  $purchaseddate = $row['purchaseddate'];
-                  $medicinename = $row['medicinename'];
-                  $drugquantity = $row['drugquantity'];
-                  $supplier = $row['supplier'];
+                  $purchaseddate = $row['purchase_date'];
+                  $medicinename = $row['drug_name'];
+                  $drugquantity = $row['quantity'];
+                  $supplier = $row['supplier_name'];
                   $category = $row['category'];
-                  $costprice = $row['costprice'];
-                  $sellingprice =$row['sellingprice'];
-                  $boxnumber=$row['boxnumber'];
+                  $costprice = $row['total_cost_price'];
+                  $sellingprice =$row['selling_price'];
+                  $unitmeasurement=$row['unit_measurement'];
                   $capacity=$row['capacity'];
-                  $groupitem=$row['groupitem'];
-                  $expirydate=$row['expirydate'];
+                  $unitcostprice=$row['unit_cost_price'];
+                  $expirydate=$row['expiry_date'];
 
                      echo"<tbody>";
                       echo "<tr>
@@ -135,9 +135,9 @@
                         <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$category</td>
                         <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$costprice</td>
                         <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$sellingprice</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$boxnumber</td>
+                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$unitmeasurement</td>
                         <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$capacity</td>
-                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$groupitem</td>
+                        <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$unitcostprice</td>
                         <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$expirydate</td>
 
                         ";
@@ -145,8 +145,8 @@
                          echo  "<td style=' border: 0.1pt solid black;'>";
 
                          echo" 
-                               <a href='editdrug.php?medicine_id=".$row['medicine_id']." '> <i class='fas fa-pen-square' style='width:100%;height:100%;font-size:24px;color:green'></i></a>
-                               <a href='removedrug.php?medicine_id=".$row['medicine_id']." '> <i class='fas fa-trash-alt' style='width:100%;height:100%;font-size:22px;color:red;margin-left:24px;margin-top:-30px'></i></a>
+                               <a href='editdrug.php?medicine_id=".$row['drug_id']." '> <i class='fas fa-pen-square' style='width:100%;height:100%;font-size:24px;color:green'></i></a>
+                               <a href='removedrug.php?medicine_id=".$row['drug_id']." '> <i class='fas fa-trash-alt' style='width:100%;height:100%;font-size:22px;color:red;margin-left:24px;margin-top:-30px'></i></a>
                                 
 
                                
@@ -213,7 +213,6 @@
 } );
 
 
-   
 </script>
 
   

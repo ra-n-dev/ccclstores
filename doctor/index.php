@@ -135,7 +135,7 @@
          <div  style="height:110px; width: 200px;background: #FFC300; " class="green">
           <?php 
 
-           $ad =mysqli_query($connect,"select * from patientvital");
+           $ad =mysqli_query($connect,"select * from patient_table");
           $sum =mysqli_num_rows($ad);
           
          ?>

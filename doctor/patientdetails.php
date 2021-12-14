@@ -48,9 +48,9 @@
 
      if(isset($_POST['search'])){
         $searchkey= $_POST['search'];
-        $query ="SELECT * FROM patientvital WHERE name LIKE '%$searchkey%' ";
+        $query ="SELECT * FROM patient_table WHERE name LIKE '%$searchkey%' ";
      }else{
-       $query ="SELECT * FROM patientvital ORDER BY reg_date DESC";
+       $query ="SELECT * FROM patient_table ORDER BY reg_date DESC";
        $searchkey ="";
      }
      $result =mysqli_query($connect, $query);
@@ -90,7 +90,7 @@
      	          $id = $row['patient_id'];
                   $name = $row['name'];
                   $occupation = $row['occupation'];
-                  $phone = $row['phone'];
+                  $phone = $row['contact'];
                   $gender = $row['gender'];
                   $age = $row['age'];
                   $reg_date = $row['reg_date'];

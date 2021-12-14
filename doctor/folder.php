@@ -133,8 +133,8 @@
          $adb=$_SESSION['doctor'];
          if(isset($_GET['patient_id'])){
           $id =$_GET['patient_id'];
-          $query = "SELECT * FROM patientvital WHERE patient_id ='$id' ";
-          $res =mysqli_query($connect, $query);
+          $query = "SELECT * FROM patient_table WHERE patient_id ='$id' ";
+          $res =mysqli_query($connect, $query) or die(mysqli_error($connect));
           $row =mysqli_fetch_array($res);
           $id = $row['patient_id'];
           $name =$row['name'];
@@ -146,14 +146,13 @@
           $bp =$row['bp'];
           $weight =$row['weight'];
           $height =$row['height'];
-          $phone =$row['phone'];
-          $relative_phone = $row['relative_phone'];
+          $phone =$row['contact'];
+          $relative_phone = $row['relative_contact'];
           $occupation =$row['occupation'];
           $placeofbirth = $row['placeofbirth'];
           $nationality =$row['nationality'];
           $religion = $row['religion'];
           $dob =$row['dob'];
-          $history=$row['history'];
 
 
           echo "<table  cellpadding =3 border=2  class='cnt'>
@@ -323,11 +322,11 @@
               $quantity=$_POST['quantity'];
               $dosage =$_POST['dosage'];
               $history =$_POST['history'];
-              $qq ="SELECT * FROM patientvital WHERE patient_id='$id'";
+              $qq ="SELECT * FROM patient_table WHERE patient_id='$id'";
               $res=mysqli_query($connect,$qq);
               $row = mysqli_fetch_array($res);
               $name = $row['name'];
-
+               
               $allMedicenes = [];
             
               foreach ($medicinename as $key => $value) {
@@ -335,15 +334,16 @@
               }
               $resp = json_encode($allMedicenes);
 
-              $query = "INSERT INTO drugs(medicinename,diagnosis,ward,healthstatus,history,patient_id,patient_name,doctor,uniquecode,visit_date)VALUES('".$resp."','$diagnosis ','$ward','$healthstatus','$history','$id','$name','$adb','$dart',now())";
-              $result =mysqli_query($connect, $query);
-              $qqq ="SELECT * FROM drugs WHERE patient_id='$id'";
-              $ress=mysqli_query($connect,$qqq);
+              $query = "INSERT INTO consultation_table(prescription,diagnosis,ward,health_status,patient_id,patient_name,doc_name,unique_code,visit_date,drug_payment_status,lab_payment_status,health_details)VALUES('".$resp."','$diagnosis ','$ward','$healthstatus','$id','$name','$adb','$dart',now(),'not yet','not yet','$history')";
+             
+              $result =mysqli_query($connect, $query)or die(mysqli_error($connect));
+              $qqq ="SELECT * FROM consultation_table WHERE patient_id='$id'";
+              $ress=mysqli_query($connect,$qqq) or die(mysqli_error($connect));
               $row = mysqli_fetch_array($ress);
               $patient_name = $row['patient_name'];
               if($result){
         
-              echo "<html><script> window.location.href='general.php?id=".$row['patient_name']."';</script></html>";
+               echo "<html><script> window.location.href='general.php?case_id=".$row['patient_name']."';</script></html>";
                }
             }
             

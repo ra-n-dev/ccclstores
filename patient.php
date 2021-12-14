@@ -33,7 +33,7 @@
    <div class="pat">
    <h3>List of All Patient</h3>
    <?php 
-     $query ="SELECT * FROM patientvital";
+     $query ="SELECT * FROM patient_table";
      $result =mysqli_query($connect, $query);
     echo"<table cellspacing=0 cellpadding =1 border=1  class='table1'>
         <tr border=0.1>
@@ -57,7 +57,7 @@
      	          $id = $row['patient_id'];
                   $name = $row['name'];
                   $occupation = $row['occupation'];
-                  $phone = $row['phone'];
+                  $phone = $row['contact'];
                   $gender = $row['gender'];
                   $age = $row['age'];
                   $reg_date = $row['reg_date'];
@@ -70,9 +70,6 @@
                         <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$age</td>
                         <td style=' border: 0.1pt solid black;padding-left:5px;padding-right:5px; '>$reg_date</td>
                         ";
-
-
-                         echo  "<td style=' border: 0.1pt solid black;'>";                       
                                                  
                          echo" </td>
 

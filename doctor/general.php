@@ -68,9 +68,9 @@
 
 
    <?php 
-      if(isset($_GET['id'])){
-       $name =$_GET['id'];
-       $queryy = "SELECT * FROM drugs  WHERE patient_name  ='$name'";
+      if(isset($_GET['case_id'])){
+       $name =$_GET['case_id'];
+       $queryy = "SELECT * FROM consultation_table  WHERE patient_name  ='$name'";
           $res =mysqli_query($connect, $queryy);
           $row =mysqli_fetch_array($res);
           $name =$row['patient_name'];        
@@ -82,20 +82,20 @@
 
 	 <div class="pahistory">
 	  <?php 
-	  if(isset($_GET['id'])){
-          $name =$_GET['id'];
-       $queryy = "SELECT * FROM drugs  WHERE patient_name  ='$name' ORDER BY visit_date DESC";
+	  if(isset($_GET['case_id'])){
+          $name =$_GET['case_id'];
+       $queryy = "SELECT * FROM consultation_table  WHERE patient_name  ='$name' ORDER BY visit_date DESC";
       
 
           $res =mysqli_query($connect, $queryy);
           $row =mysqli_fetch_array($res);
           $name =$row['patient_name'];
-          $history =$row['history'];
-          $medicinename =$row['medicinename'];
+          $history =$row['health_details'];
+          $medicinename =$row['prescription'];
           $ward =$row['ward'];
           $diagnosis =$row['diagnosis'];
-          $healthstatus=$row['healthstatus'];
-          $doctor =$row['doctor'];
+          $healthstatus=$row['health_status'];
+          $doctor =$row['doc_name'];
           $visit_date =$row['visit_date'];
           
 
@@ -122,15 +122,14 @@
 
      while ($row= mysqli_fetch_array($result)) {
                   $name = $row['patient_name'];
-                  $history = $row['history'];
-                  $medicinename = $row['medicinename'];
+                  $history = $row['health_details'];
+                  $medicinename = $row['prescription'];
                   $diagnosis = $row['diagnosis'];
-                  $healthstatus = $row['healthstatus'];
+                  $healthstatus = $row['health_status'];
                   $ward =$row['ward'];
-                  $doctor =$row['doctor'];
+                  $doctor =$row['doc_name'];
                   $visit_date =$row['visit_date'];
                   $allMedicenes = json_decode($medicinename, true);
-                  
                   // loop through the medicines and use it to created the nested table
                   // you can style the table however you like
                   $subTable = "<table style='width:104%;margin-left:-6px'>
