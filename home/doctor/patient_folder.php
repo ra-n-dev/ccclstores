@@ -35,10 +35,12 @@
 
 
     $queryy = "SELECT * FROM consultation_table  WHERE unique_code  ='$casecode'";
+          $code = $row['case_id'];
           $res =mysqli_query($connect, $queryy);
           $row =mysqli_fetch_array($res);
           $name =$row['patient_name'];        
        $result =mysqli_query($connect, $queryy);
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -195,6 +197,7 @@
           $doctor =$row['doc_name'];
           $visit_date =$row['visit_date'];
           $results='naming ceremoney';
+          $ass =$row['case_id'];
           
 
        $result =mysqli_query($connect, $queryy);
@@ -206,6 +209,7 @@
      }
 
      while ($row= mysqli_fetch_array($result)){
+                  $ass =$row['case_id'];
                   $id = $row['case_id'];
                   $name = $row['patient_name'];
                   $history = $row['health_details'];
@@ -424,7 +428,259 @@
                }  
              ?>
 	 
+     <!-- SELECT * FROM `consultation_annex_table` WHERE case_id=111 -->
+     <!-- use this query to fetch newly added data and use the results to create the table -->
+     <!-- replace 111 with the case_id or consultation table id -->
+
+       <?php 
+
+          
+      if(isset($_GET["$casecode"])){
+         
+      $queryy = "SELECT * FROM consultation_annex_table  WHERE case_id  ='111' ORDER BY update_date DESC";
+
+
+          $res =mysqli_query($connect, $queryy);
+          $row =mysqli_fetch_array($res);
+           
+          $name =$row['patient_name'];
+          $history =$row['clinical_history'];
+          $medicinename =$row['prescription'];
+          $bp =$row['bp'];
+          $diagnosis =$row['diagnosis'];
+          $doctor =$row['doc_name'];
+          $update_date =$row['update_date'];
+          $results='naming ceremoney';
+          $spo2 =$row['spo2'];
+          
+
+       $result =mysqli_query($connect, $queryy);
+
+
+
+           if(mysqli_num_rows($result)<1){
+      echo"<tr><td style=' border: 1pt double ;background:#3090C7;color:white;'>No patient history yet</<td></tr>";
+     }
+
+     while ($row= mysqli_fetch_array($result)){
+                  $id = $row['case_id'];
+                  $name = $row['patient_name'];
+                  $history = $row['clinical_history'];
+                  $medicinename = $row['prescription'];
+                  $diagnosis = $row['diagnosis'];
+                  $lab =$row['labs'];
+                  $doctor =$row['doc_name'];
+                  $update_date =$row['update_date'];
+                  $allMedicines = json_decode($medicinename, true);
+                  $drugg =$row['prescription'];
+                  $spo2 =$row['spo2'];
+                  // loop through the medicines and use it to created the nested table
+                  // you can style the table however you like
+
+                  $subTable = "<table style='width:100%;margin-left:0px' cellpadding =3 border=1 class='med'>
+
+                     <tr border=0.1 >
+                     <td style='background:black;color:white;width:4%'> Drug Name</td>
+                     <td style='background:gold;color:black;width:5%'>Dosage</td>
+                     <td style='background:gold;color:black;width:5%'>ML/MG</td>
+                     <td style='background:indigo;color:white;width:10%'>Quantity</td>
+
+      
+                     </tr>
+                  ";
+                  if(!$drugg== null){                    
+                    
+
+                    foreach ($allMedicines as $key => $value) {
+
+                    $subTable = "$subTable <tr style='width:100%; background:white; border:2px solid black'>
+
+                        <td style='border: 0.1pt solid black;width:100%'>{$value['name']}</td>
+                        <td style='border: 0.1pt solid black;width:40%'>{$value['dosage']}</td>
+                        <td style='border: 0.1pt solid black;width:40%'>{$value['ml']}</td>
+                        <td style='border: 0.1pt solid black;width:40%'>{$value['quantity']}</td>
+                         </tr>
+                         ";
+                  }
+                  $subTable = "$subTable </table>";
+
+                  }else{
+
+                    $subTable = "$subTable <tr style='width:100%; background:white; border:2px solid black'>
+
+                        <td style='border: 0.1pt solid black;width:60%'>none</td>
+                        <td style='border: 0.1pt solid black;width:40%'>none</td>
+                        <td style='border: 0.1pt solid black;width:40%'>none</td>
+                        <td style='border: 0.1pt solid black;width:40%'>none</td>
+                         </tr>
+                         ";
+                  
+                    $subTable = "$subTable </table>";
+
+                  }
+                  
+
+
+
+                   $vitalTable = "<table style='width:100%;margin-left:0px' cellpadding =3 border=1 class='med'>
+
+                        <th>SPO2</th>
+                        <th>Pulse</th>
+                        <th>Weight</th>
+                        <th>Temp</th>
+                        <th>BP</th>
+                       
+
+
+      
+                     </tr>
+                  ";
+
+                 
+                    $vitalTable = "$vitalTable <tr style='width:100%; background:white; border:2px solid black'>
+
+                            <td>$spo2</td>
+                            <td>$pulse</td>
+                            <td>$weight</td>
+                            <td>$temp</td>
+                            <td>$bp</td>
+                           
+                         </tr>
+                         ";
+                
+                  $vitalTable = "$vitalTable </table>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   $vital2Table = "<table style='width:100%;margin-left:0px' cellpadding =3 border=1 class='med'>
+
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Date</th>
+                        <th>Occupation</th>
+                        <th>Religion</th>
+
+
+      
+                     </tr>
+                  ";
+
+                 
+                    $vital2Table = "$vital2Table <tr style='width:100%; background:white; border:2px solid black'>
+
+                            <td>$gender</td>
+                            <td>$age</td>
+                            <td>$update_date</td>
+                            <td>$occupation</td>
+                            <td>$casecode</td>
+                         </tr>
+                         ";
+                
+                  $vital2Table = "$vital2Table </table>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  echo"
+                <center><div class='wan'><br>
+                    <div class='wann'>
+                    
+
+                    <div style='border:2px solid black' class='band'><br>
+
+                <table style='width:75%;margin-left:-6px' cellpadding =3 border=2 class='med'>
+                <tr>
+                   <th>Patient Vitals</th>
+                </tr>
+                <tr>
+                   <td>$vitalTable</td>
+                </tr>
+                <tr>
+                   <td>$vital2Table</td>
+                </tr>
+               </table>
+
+
+               <table style='width:75%;margin-left:-6px' cellpadding =3 border=2 class='med'>
+                <tr>
+                   <th>Clinical History</th>
+                </tr>
+                <tr>
+                   <td>$history</td>
+                </tr>
+
+               </table>
+
+
+
+               <table style='width:75%;margin-left:-6px' cellpadding =3 border=2 class='med'>
+                <tr>
+                   <th>Diagnosis</th>
+                   <th>Lab</th>
+                </tr>
+                <tr>
+                   <td>$diagnosis</td>
+                   <td>$lab</td>
+                </tr>
+
+               </table>
+
+
+
+               <table style='width:75%;margin-left:-6px' cellpadding =3 border=2 class='med'>
+                <tr>
+                   <th>Drugs Prescribed</th>
+                </tr>
+                <tr>
+                   <td>$subTable</td>
+                </tr>
+               </table><br>
+
+
+               <a href='updatefolder.php?id=".$id." ' style='background:black;padding-top:5px;padding-bottom:5px; width:100%;color:white;text-decoration:none;padding-right:27px;padding-left:27px;border-radius:6px;'>Update</a>
+               <a href='addmore.php?id=".$id." ' style='background:gold;padding-top:5px;padding-bottom:5px; width:100%;color:black;text-decoration:none;padding-right:15px;padding-left:15px;border-radius:6px;'>Add More</a>
+
+               <br>
+                    </div> 
+                    
+
+                
+
+             </center>";
+                  
+                                    
+                  } 
+
+
+                    echo"$ass";        
+               }  
+             ?>
+
+
+
 	 </div>
+
+
 
      
 </body>
