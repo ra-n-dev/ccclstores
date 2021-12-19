@@ -62,17 +62,97 @@ include("../header.php");
         padding-top: 20px;
         padding-bottom: 30px;
     }
-    .dash .ad ul li{
-        margin-top: 2%;
-        padding-bottom: 4%;
-        padding-top: 4%;
+
+
+    .dash .ad ul li a{
+        text-decoration: none;
+       
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+        padding-left: 3%;
+        padding-right: 2%;
+        border-radius: 6px;
         color: red;
         display: block;
-        width: 50%;
-        background: black;
-        margin-right: 3%;
+        width: 13%;
+        background: #7FB3D5;
+        margin-right: 0%;
+        margin-top: 2%;
+        margin-left: 7%;
     
     }
+
+
+    .dash .add ul li{
+        
+     list-style: none;
+    } 
+
+    .dash .ad ul li{
+        
+     list-style: none;
+    }
+     .dash .add ul li a{
+        text-decoration: none;
+        margin-top: -30%;
+        padding-top: 5vh;
+        margin-bottom: 32%;
+        padding-bottom: 5vh;
+        padding-left: 3%;
+        padding-right: 2%;
+        border-radius: 6px;
+        color: red;
+        display: block;
+        width: 13%;
+        background: #212F3D;
+        margin-left: 28%;
+    
+    }
+
+
+
+    .dash .addd ul li{
+        
+     list-style: none;
+    }
+     .dash .addd ul li a{
+        text-decoration: none;
+        margin-top: -60%;
+        padding-top: 5vh;
+        margin-bottom: 62%;
+        padding-bottom: 5vh;
+        padding-left: 3%;
+        padding-right: 2%;
+        border-radius: 6px;
+        color: red;
+        display: block;
+        width: 13%;
+        background: #58D68D;
+        margin-left: 49%;
+    
+    }
+
+    .dash .adddd ul li{
+        
+     list-style: none;
+    }
+     .dash .adddd ul li a{
+        text-decoration: none;
+        margin-top: -90%;
+        padding-top: 5vh;
+        margin-bottom: 92%;
+        padding-bottom: 5vh;
+        padding-left: 3%;
+        padding-right: 2%;
+        border-radius: 6px;
+        color: red;
+        display: block;
+        width: 13%;
+        background: #F5B041;
+        margin-left: 70%;
+    
+    }
+
     .dash .ad ul{
 
     }
@@ -87,6 +167,19 @@ include("../header.php");
         background: yellow;
         margin-right: 3%;
         margin-top: 2%;
+    }
+
+    .dash .add ul li{
+        margin-top: 2%;
+        margin-bottom: 4%;
+        padding-top: 4%;
+        color: red;
+        display: block;
+        width: 50%;
+        background: black;
+        margin-right: 3%;
+        margin-left: 0%;
+    
     }
 
    }
@@ -115,16 +208,46 @@ include("../header.php");
        <center> <h3 class="hd">Admin Dashboard</h3></center>
         <div class="ad">
             <ul>
-                <li>Total Staff</li>
-                <li>Monthly Sales</li>
-                <li>Monthly Expenses</li>
+                <li><a href="#">Total Staff</a></li>
+                <li><a href="#">Doris</a></li>
+                <li><a href="#">Monthly Expenses</a></li>
                 
             </ul>
         </div>
 
+        <div class="add">
+            <ul>
+                <li><a href="#">Total Staff</a></li>
+                <li><a href="#">Monthly Sales</a></li>
+                <li><a href="#">Monthly Expenses</a></li>
+                
+            </ul>
+        </div>
+        
 
-    </div> 
+        <div class="addd">
+            <ul>
+                <li><a href="#">Total Staff</a></li>
+                <li><a href="#">Monthly Sales</a></li>
+                <li><a href="#">Monthly Expenses</a></li>
+                
+            </ul>
+        </div>
+
+        <div class="adddd">
+            <ul>
+                <li><a href="#">Total Staff </a></li>
+                <li><a href="#">Monthly Sales</a></li>
+                <li><a href="#">Monthly Expenses</a></li>
+                <li><a href="#"><span>Rice/Banku</span></a></li>
+                
+            </ul>
+        </div>
+
+       </div> 
     
+
+
     
  	
  	

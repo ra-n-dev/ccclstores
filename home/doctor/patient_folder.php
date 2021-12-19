@@ -409,10 +409,13 @@
                 <tr>
                    <td>$subTable</td>
                 </tr>
-               </table><br>
+               </table><br>";
 
 
-               <a href='updatefolder.php?id=".$id." ' style='background:black;padding-top:5px;padding-bottom:5px; width:100%;color:white;text-decoration:none;padding-right:27px;padding-left:27px;border-radius:6px;'>Update</a>
+
+
+
+              echo "<a href='updatefolder.php?id=".$id." ' style='background:black;padding-top:5px;padding-bottom:5px; width:100%;color:white;text-decoration:none;padding-right:27px;padding-left:27px;border-radius:6px;'>Update</a>
                <a href='addmore.php?id=".$id." ' style='background:gold;padding-top:5px;padding-bottom:5px; width:100%;color:black;text-decoration:none;padding-right:15px;padding-left:15px;border-radius:6px;'>Add More</a>
 
                <br>
@@ -435,15 +438,16 @@
        <?php 
 
           
-      if(isset($_GET["$casecode"])){
-         
-      $queryy = "SELECT * FROM consultation_annex_table  WHERE case_id  ='111' ORDER BY update_date DESC";
+      if(isset($_GET["idd"])){
+      $sen =$_GET['idd'];
+      $queryy = "SELECT * FROM consultation_annex_table  WHERE case_id  ='$sen' ORDER BY update_date DESC";
+     
 
 
           $res =mysqli_query($connect, $queryy);
           $row =mysqli_fetch_array($res);
            
-          $name =$row['patient_name'];
+          $namez =$row['patient_name'];
           $history =$row['clinical_history'];
           $medicinename =$row['prescription'];
           $bp =$row['bp'];
@@ -670,17 +674,13 @@
                   
                                     
                   } 
-
-
-                    echo"$ass";        
+       
                }  
              ?>
 
 
 
 	 </div>
-
-
 
      
 </body>

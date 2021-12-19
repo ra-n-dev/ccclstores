@@ -16,8 +16,11 @@
           $query = "SELECT * FROM consultation_table WHERE case_id ='$id' ";
           $res =mysqli_query($connect, $query) or die(mysqli_error($connect));
           $row =mysqli_fetch_array($res);
-          $id = $row['case_id'];
+          $idd = $row['case_id'];
           $name =$row['patient_name'];
+
+          echo"$idd <br>";
+          echo"$id";
               
   }
       
@@ -89,7 +92,7 @@
         $query = "INSERT INTO consultation_annex_table(prescription,diagnosis,pulse,temp,case_id,patient_name,doc_name,unique_code,update_date,drug_payment_status,lab_payment_status,clinical_history,labs,spo2,bp)VALUES('$drugg','$diag','$pulse','$temp','$id','$name','$uname','$caseid',now(),'not yet','not yet','$healthdetails','$lab','$spo2','$bp')";
         $result =mysqli_query($connect,$query) or die(mysqli_error($connect));
         if($result){
-            echo "<html><script> window.location.href='patient_folder.php?$caseid=".$row['patient_name']."';</script></html>";
+            echo "<html><script> window.location.href='patient_folder.php?idd=".$id."';</script></html>";
         }
         
       }
