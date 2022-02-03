@@ -13,6 +13,7 @@
 
      $id = $row['patient_id'];
           $name =$row['name'];
+          $permanent_id =$row['patient_perm_id'];
           $date = $row['reg_date'];
           $age =$row['age'];
           $gender = $row['gender'];
@@ -29,6 +30,7 @@
           $nationality =$row['nationality'];
           $religion = $row['religion'];
           $dob =$row['dob'];
+          $fun = date("Y-m-d ");
   
 
 
@@ -83,6 +85,9 @@
 
         if(isset($_POST['medicinename'])){
              $drugg=$resp;
+
+              echo"<script>alert('$drugg')</script>";
+
              
 
          }else {
@@ -92,12 +97,25 @@
 
         $ward =$_POST['ward'];
         $healthdetails= $_POST['healthdetails'];
-        $query = "INSERT INTO consultation_table(prescription,diagnosis,ward,health_status,patient_id,patient_name,doc_name,unique_code,visit_date,drug_payment_status,lab_payment_status,health_details,labs)VALUES('$drugg','$diag','$ward','none','$id','$name','$uname','$casecode',now(),'not yet','not yet','$healthdetails','$lab')";
+        $query = "INSERT INTO consultation_table(prescription,diagnosis,ward,health_status,patient_perm_id,patient_name,doc_name,case_id,visit_date,drug_payment_status,lab_payment_status,health_details,labs)VALUES('$drugg','$diag','$ward','none','$permanent_id','$name','$uname','$casecode','$fun','not yet','not yet','$healthdetails','$lab')";
 
         $result =mysqli_query($connect,$query) or die(mysqli_error($connect));
+     
+
+        $www ="SELECT * FROM consultation_table WHERE case_id ='$casecode' ORDER BY visit_date DESC ";
+        $rrs =mysqli_query($connect,$www);
+        $row = mysqli_fetch_array($rrs);
+        $fffid =$row['case_id'];
+
+
+        $sql = "INSERT INTO consult_neutral_table(prescription,diagnosis,bp,temp,patient_name,doc_name,case_id,update_date,spo2,pulse,clinical_history,labs,lab_payment_status,drug_payment_status ,patient_perm_id)VALUES('$drugg','$diag','no bp','no temp','$name','$uname','$casecode','$fun','no spo2','no pulse','$healthdetails','$lab','not paid','not paid','$permanent_id')";
+        $res =mysqli_query($connect,$sql) or die(mysqli_error($connect)); 
+
+
         if($result){
             echo "<html><script> window.location.href='patient_folder.php?$casecode=".$row['name']."';</script></html>";
         }
+        
         
       }    
 

@@ -3,7 +3,7 @@
 <?php 
   session_start();
     $uname= $_SESSION['doctor']; 
-    $casecode= $_SESSION['caseid'];
+    //$casecode= $_SESSION['caseid'];
     $casecodes= $_SESSION['permanent_id'];
     include("../../db/connection.php");
     include("../header.php");
@@ -11,7 +11,7 @@
 
 
 
-    $query ="SELECT * FROM patient_table WHERE case_id ='$casecode' ";
+    $query ="SELECT * FROM patient_table WHERE patient_perm_id ='$casecodes' ";
     $result =mysqli_query($connect,$query) or die(mysqli_error($connect));
     $row =mysqli_fetch_array($result);
 
@@ -35,7 +35,7 @@
 
 
 
-    $queryy = "SELECT * FROM consultation_table  WHERE case_id  ='$casecode'";
+    $queryy = "SELECT * FROM consultation_table  WHERE patient_perm_id  ='$casecodes'";
           $code = $row['case_id'];
           $res =mysqli_query($connect, $queryy);
           $row =mysqli_fetch_array($res);
@@ -179,10 +179,10 @@
 
    <div class="pahistory">
 	  <?php 
-	  if(isset($_GET["$casecode"])){
-          $name =$_GET["$casecode"];
-          $case_unique_code =$_GET["$casecode"];
-      $queryy = "SELECT * FROM consultation_table  WHERE case_id  ='$casecode' ORDER BY visit_date DESC";
+	  if(isset($_GET["$casecodes"])){
+          $name =$_GET["$casecodes"];
+          $case_unique_code =$_GET["$casecodes"];
+      $queryy = "SELECT * FROM consultation_table  WHERE patient_perm_id  ='$casecodes' ORDER BY visit_date DESC";
 
       /* $queryy = "SELECT consultation_table.col1 AS case_id, consultation_table.col2 AS prescription, consultation_table.col3 As diagnosis, consultation_table.col4 AS ward, consultation_table.col5 AS health_status, consultation_table.col6 AS patient_id, consultation_table.col7 AS visit_date, consultation_table.col8 AS doc_name, consultation_table.col9 AS patient_name, consultation_table.col10 AS unique_code, consultation_table.col11 AS drug_payment_status, consultation_table.col12 AS lab_payment_status, consultation_table.col13 AS health_details, consultation_table.col14 AS labs, consultation_annex_table.col1 AS patient_id, consultation_annex_table.col2 AS case_id, consultation_annex_table.col3 AS unique_code, consultation_annex_table.col4 AS patient_name, consultation_annex_table.col5 AS spo2, consultation_annex_table.col6 AS pulse, consultation_annex_table.col7 AS temp, consultation_annex_table.col8 AS bp, consultation_annex_table.col9 AS clinical_history, consultation_annex_table.col10 AS diagnosis, consultation_annex_table.col11 AS prescription, consultation_annex_table.col12 AS labs, consultation_annex_table.col13 AS undate_date, consultation_annex_table.col14 AS drug_payment_status,consultation_annex_table.col15 AS lab_payment_status, consultation_annex_table.col16 AS doc_name FROM consultation_table, consultation_annex_table WHERE consultation_table.case_id = consultation_annex_table.case_id";
      */ 
@@ -381,8 +381,8 @@
                </table><br>";
 
 
-              echo "<a href='updatefolder.php?casecode={$casecode}&id=".$id." ' style='background:black;padding-top:5px;padding-bottom:5px; width:100%;color:white;text-decoration:none;padding-right:27px;padding-left:27px;border-radius:6px;'>Update</a>
-               <a href='addmore.php?casecode={$casecode}&id=".$id." ' style='background:gold;padding-top:5px;padding-bottom:5px; width:100%;color:black;text-decoration:none;padding-right:15px;padding-left:15px;border-radius:6px;'>Add More</a>
+              echo "<a href='updatefolder.php?casecode={$casecodes}&id=".$id." ' style='background:black;padding-top:5px;padding-bottom:5px; width:100%;color:white;text-decoration:none;padding-right:27px;padding-left:27px;border-radius:6px;'>Update</a>
+               <a href='addmore.php?casecode={$casecodes}&id=".$id." ' style='background:gold;padding-top:5px;padding-bottom:5px; width:100%;color:black;text-decoration:none;padding-right:15px;padding-left:15px;border-radius:6px;'>Add More</a>
 
                <br>
 

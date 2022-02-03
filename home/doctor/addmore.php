@@ -27,12 +27,13 @@
 
 
  if(isset($_POST['save'])){
-
+        $case_code = $_GET["casecode"];
         $spo2 =$_POST['spo2'];
         $temp =$_POST['temp'];
         $healthdetails =$_POST['healthdetails'];
         $pulse =$_POST['pulse'];
         $bp =$_POST['bp'];
+        $fun = date("Y-m-d ");
 
 
 
@@ -49,21 +50,16 @@
         $diag ="No diagnosis yet";
        }
         
- 
+
         
-       if(isset($_POST['check'])){
-        $labcheckbox=$_POST['check'];
-        $lab="";
-
-        foreach ($labcheckbox AS $value) {
-            $lab .= $value."," ;
-            
-        }
-
+       if(isset($_POST['check'])){ 
+        $labcheckbox=$_POST['check'];        
+        $lab =  implode(',',$labcheckbox);
        }else{
         $lab ="No request yet";
        }
 
+echo "{$_POST['medicinename']}";
         
         $medicinename =$_POST['medicinename'];
         $quantity=$_POST['quantity'];
@@ -81,6 +77,9 @@
 
         if(isset($_POST['medicinename'])){
              $drugg=$resp;
+
+              echo"<script>alert('$drugg')</script>";
+
              
 
          }else {
@@ -89,11 +88,16 @@
         }
 
         $healthdetails= $_POST['healthdetails'];
-        $query = "INSERT INTO consultation_annex_table(prescription,diagnosis,pulse,temp,case_id,patient_name,doc_name,unique_code,update_date,drug_payment_status,lab_payment_status,clinical_history,labs,spo2,bp)VALUES('$drugg','$diag','$pulse','$temp','$id','$name','$uname','$caseid',now(),'not yet','not yet','$healthdetails','$lab','$spo2','$bp')";
+        $query = "INSERT INTO consultation_annex_table(prescription,diagnosis,pulse,temp,iddd,patient_name,doc_name,case_id,update_date,drug_payment_status,lab_payment_status,clinical_history,labs,spo2,bp)VALUES('$drugg','$diag','$pulse','$temp','$id','$name','$uname','$caseid','$fun','not yet','not yet','$healthdetails','$lab','$spo2','$bp')";
         $result =mysqli_query($connect,$query) or die(mysqli_error($connect));
+
+        $sql = "UPDATE consult_neutral_table SET prescription ='$drugg', diagnosis ='$diag',pulse='$pulse',temp ='$temp',doc_name ='$uname',update_date='$fun',clinical_history='$healthdetails',labs ='$lab',spo2='$spo2',bp='$bp' WHERE unique_code ='$caseid' ";
+        $res =mysqli_query($connect,$sql) or die(mysqli_error($connect));
+
         if($result){
-            echo "<html><script> window.location.href='patient_folder.php?idd=".$id."';</script></html>";
+            echo "<html><script> window.location.href='patient_folder.php?{$case_code}&idd=".$id."';</script></html>";
         }
+        
         
       }
 
@@ -446,7 +450,7 @@
      </div>
     </center>
 
-      <center>
+ <center>
      <div class="drugs" id="drugs">
         <h2>Drug Prescription Form</h2>
        
@@ -494,7 +498,6 @@
        
      </div>
     </center> 
-
 
     <div id="diag" class="diag">
         <div>
@@ -732,11 +735,13 @@
    
    </script>   
 
-   <script type="text/javascript">
+   
+
+      <script type="text/javascript">
     $(document).ready(function () {
       var html ='<tr><td><input type="text" name="medicinename[]" required style="width:96%;height:20px;margin-left:-1px;margin-top:-10px"></td><td><input type="text" name="dosage[]" required style="width:96%;height:20px;margin-left:-1px;margin-top:-10px"></td><td><input  name="ml[]" required style="width:96%;height:20px;margin-left:-1px;margin-top:-10px"></td><td><input name="quantity[]" required style="width:96%;height:20px;margin-left:-1px;margin-top:-10px"></td><td><input type="button" name="remove" value="Remove" style="background:red; color: white; border-color: red; width:100%;height:24px;margin-left:-1px;margin-top:-10px;" id="remove"></td></tr>'
 
-      var x = 1;
+      // var x = 1;
 
       $("#add").click(function(){
          $("#table_field").append(html);
@@ -746,7 +751,7 @@
       });
 
     });
-   </script>  
+   </script> 
 
 </body>
 </html>

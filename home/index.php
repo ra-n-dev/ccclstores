@@ -31,7 +31,9 @@
     	}else if($row['usertype']==='account'){
 
     		$_SESSION['account']=$uname;
-    		echo"<script>alert('welcome to the account page ')</script>";
+    	//	echo"<script>alert('welcome to the labtech page ')</script>";
+    		//echo"<script>alert('welcome to the pharmacy page ')</script>";
+    		echo'<script>window.location.href="../home/account/index.php"</script>';
 
     	}else if($row['usertype']==='nurse'){
     		$_SESSION['nurse']=$uname;
@@ -40,12 +42,15 @@
     	}else if($row['usertype']==='labtech'){
 
     		$_SESSION['labtech']=$uname;
-    		echo"<script>alert('welcome to the labtech page ')</script>";
+    	//	echo"<script>alert('welcome to the labtech page ')</script>";
+    		//echo"<script>alert('welcome to the pharmacy page ')</script>";
+    		echo'<script>window.location.href="../home/laboratory/index.php"</script>';
 
-    	}else if($row['usertype']==='nurse'){
+    	}else if($row['usertype']==='pharmacist'){
 
     		$_SESSION['pharmacist']=$uname;
-    		echo"<script>alert('welcome to the pharmacy page ')</script>";
+    		//echo"<script>alert('welcome to the pharmacy page ')</script>";
+    		echo'<script>window.location.href="../home/pharmacy/index.php"</script>';
 
     	}else if($row['usertype']==='receptionist'){
 
@@ -54,6 +59,14 @@
     		$_SESSION['receptionist']=$uname;
          ?>
        	<script>window.location.href="../home/opd/index.php"</script>
+       	<?php
+    	}else if($row['usertype']==='store'){
+
+    		$_SESSION['store']=$uname;
+    		//echo"<script>alert('welcome to the reception page ')</script>";
+    		$_SESSION['store']=$uname;
+         ?>
+       	<script>window.location.href="../home/store/index.php"</script>
        	<?php
     	}{
     		echo"<script>alert('wait for admin to approve your section ')</script>";
@@ -75,9 +88,9 @@
 		padding: 0;
 		background-image: url(../image/home6.jpg);
 		background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 95vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 95vh;
 	}
     .homcon1 h1{
       margin-top: 7%;	
@@ -256,11 +269,12 @@
  			<select name="usertype" style="margin-bottom:20px">
  			 <option value="admin">admin</option>	
  			 <option value="doctor">doctor</option>
- 			 <option value="nurse">nurse</option>
  			 <option value="account">account</option>
+ 			 <option value="nurse">nurse</option>
  			 <option value="receptionist">receptionist</option>
  			 <option value="labtech">labtech</option>
- 			 <option value="pharmacy">pharmacy</option>
+ 			 <option value="store">Store</option>
+ 			 <option value="pharmacist">pharmacist</option>
  			</select><br>
  			<input class="subb" type="submit" name="save">
  			

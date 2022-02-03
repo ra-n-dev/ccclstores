@@ -20,5 +20,27 @@ if(isset($_SESSION['doctor'])){
 
 	header("Location: ../home/index.php");
 }
+elseif(isset($_SESSION['pharmacist'])){
+
+	unset($_SESSION['pharmacist']);
+
+	header("Location: ../home/index.php");
+}elseif(isset($_SESSION['labtech'])){
+
+	unset($_SESSION['labtech']);
+
+	header("Location: ../home/index.php");
+}elseif(isset($_SESSION['account'])){
+
+	unset($_SESSION['account']);
+
+	header("Location: ../home/index.php");
+}elseif(isset($_SESSION['store'])){
+
+	unset($_SESSION['store']);
+
+	header("Location: ../home/index.php");
+}
+
 
  ?>

@@ -44,13 +44,13 @@
     
     if(isset($_POST['submitfol'])){
             $name= $_POST['casecode'];
-            $query ="SELECT * FROM patient_table WHERE case_id LIKE '%$name%' ";
+            $query ="SELECT * FROM patient_table WHERE patient_perm_id = '$name' ";
 
 
             $result =mysqli_query($connect, $query);
             $row =mysqli_fetch_array($result);
             $patient_name = $row['name'];
-            $permanent_id = $row['patient_p_id'];
+            $permanent_id = $row['patient_perm_id'];
             $case_id =$row['case_id'];
 
             echo"<script>alert('$permanent_id')</script>";
@@ -58,15 +58,16 @@
 
         //it can be this -- $casecode =$_POST['casecode']; or what i have done below--
 
-            $_SESSION['caseid'] = $_POST['casecode'];
+           // $_SESSION['caseid'] = $_POST['casecode'];
+            $_SESSION['permanent_id'] = $_POST['casecode'];
 
-            $casecode= $_SESSION['caseid'];
+            $casecodes= $_SESSION['permanent_id'];
 
-             echo"<script>alert('$casecode')</script>";
+             echo"<script>alert('$casecodes')</script>";
 
 
-            if($casecode ===$case_id){
-            echo "<html><script> window.location.href='patient_folder.php?$casecode=".$row['name']."';</script></html>";
+            if($casecodes ===$permanent_id){
+            echo "<html><script> window.location.href='patient_folder2.php?$casecodes=".$row['name']."';</script></html>";
 
          
             ?>

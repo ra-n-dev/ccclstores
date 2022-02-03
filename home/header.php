@@ -83,17 +83,14 @@
                       
 
                  }elseif(isset($_SESSION['account'])){
-                      
-                     $uname= $_SESSION['account'];
-
-                      echo "
-                     <li>
-                         <a style='text-decoration: none; color: gold;margin-left:-10%; margin-right:2%; 'href='#'>$uname </a>
+                    $uname= $_SESSION['account'];
+                    echo "
+                        <li>
+                         <a style='text-decoration: none; color: black;margin-left:-1%; margin-right:20px; 'href='#'>$uname</a>
                          
-                         <a style='text-decoration: none;color:gold; margin-right:5%' href='../home/logout.php'><i class='fas fa-sign-out-alt'></i>sign-out</a>
-                     </li>
-                     "; 
-                      
+                         <a style='text-decoration: none;' href='../logout.php'><i class='fas fa-sign-out-alt'></i>sign-out</a>
+                       </li> 
+                       ";
 
                  }else if(isset($_SESSION['nurse'])){
 
@@ -106,13 +103,13 @@
                        </li> 
                        "; 
 
-                 }else if(isset($_SERVER['labtech'])){
+                 } else if(isset($_SESSION['labtech'])){
                     $uname= $_SESSION['labtech'];
                     echo "
                         <li>
-                         <a style='text-decoration: none; color: gold;margin-left:-1%; margin-right:20px; 'href='#'>$uname</a>
+                         <a style='text-decoration: none; color: black;margin-left:-1%; margin-right:20px; 'href='#'>$uname</a>
                          
-                         <a style='text-decoration: none;' href='logout.php'><i class='fas fa-sign-out-alt'></i>sign-out</a>
+                         <a style='text-decoration: none;' href='../logout.php'><i class='fas fa-sign-out-alt'></i>sign-out</a>
                        </li> 
                        ";
 
@@ -130,17 +127,23 @@
                     $uname= $_SESSION['pharmacist'];
                     echo "
                         <li>
-                         <a style='text-decoration: none; color: gold;margin-left:-1%; margin-right:20px; 'href='#'>$pharmacist</a>
+                         <a style='text-decoration: none; color: black;margin-left:-1%; margin-right:20px; 'href='#'>$uname</a>
                          
-                         <a style='text-decoration: none;' href='logout.php'><i class='fas fa-sign-out-alt'></i>sign-out</a>
+                         <a style='text-decoration: none;' href='../logout.php'><i class='fas fa-sign-out-alt'></i>sign-out</a>
                        </li> 
                        ";
 
-                 }
+                 }else if(isset($_SESSION['store'])){
+                    $uname= $_SESSION['store'];
+                    echo "
+                        <li>
+                         <a style='text-decoration: none; color: black;margin-left:-1%; margin-right:20px; 'href='#'>$uname</a>
+                         
+                         <a style='text-decoration: none;' href='../logout.php'><i class='fas fa-sign-out-alt'></i>sign-out</a>
+                       </li> 
+                       ";
 
-
-
-                  else{
+                 }else{
                     
                    echo '
                     <a class="ad " href="adminlogin.php">Admin</a>

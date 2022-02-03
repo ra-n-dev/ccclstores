@@ -10,6 +10,8 @@
  $ress =mysqli_query($connect,$quer) or die(mysqli_error($connect));
  $row = mysqli_fetch_array($ress);
  $name =$row['customer_name'];
+ $permanent_id =$row['patient_perm_id'];
+ $case_id =$row['case_id'];
 
 
  if(isset($_POST['submit'])){
@@ -32,11 +34,14 @@
   $bp = $_POST['bp'];
   $gender = $_POST['gender'];
   $weight = $_POST['weight'];
-  $td =date('dmy');
-  $dart =$td . $_SESSION["refreshed_round"]+=1;
-    
+  $fun = date("Y-m-d ");
+ // $td =date('dmy');
+  //$dart =$td . $_SESSION["refreshed_round"]+=1;
 
-  $query = "INSERT INTO patient_table(name,contact,placeofbirth,marital_status,occupation,dob,age,relative_contact,nationality,religion,height,pulse,spo2,temp,bp,gender,weight,reg_date,patient_p_id,case_id)VALUES('$name','$contact','$placeofbirth','$marital_status','$occupation','$dob','$age','$relative_contact','$nationality','$religion','$height','$pulse','$sop2','$temp','$bp','$gender','$weight',now(),'$dart','$caseid')";
+
+
+
+  $query = "INSERT INTO patient_table(name,contact,placeofbirth,marital_status,occupation,dob,age,relative_contact,nationality,religion,height,pulse,spo2,temp,bp,gender,weight,reg_date,patient_perm_id,case_id)VALUES('$name','$contact','$placeofbirth','$marital_status','$occupation','$dob','$age','$relative_contact','$nationality','$religion','$height','$pulse','$sop2','$temp','$bp','$gender','$weight','$fun','$permanent_id','$case_id')";
 
   $result =mysqli_query($connect,$query) or die(mysqli_error($connect));
   if($result){

@@ -10,10 +10,10 @@
   <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>
+      
 
  
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js">
-    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js"></script>
 </head>
 <style type="text/css">
     .pat{
@@ -71,6 +71,7 @@
     padding-top: 3%;
     margin-bottom: 3%;
   }
+
 </style>
 <body>
     <div class="woo">
@@ -119,7 +120,7 @@
                   $supplier = $row['supplier_name'];
                   $category = $row['category'];
                   $costprice = $row['total_cost_price'];
-                  $sellingprice =$row['selling_price'];
+                  $sellingprice =$row['unit_selling_price'];
                   $unitmeasurement=$row['unit_measurement'];
                   $capacity=$row['capacity'];
                   $unitcostprice=$row['unit_cost_price'];
@@ -187,6 +188,9 @@
 
         
     $('#table_id').DataTable({
+        "searching":false,
+        "paging":true,
+        "order":false,
       dom: 'Bfrtip',
          lengthMenu: [
             [ 5, 25, 50, 100, -1 ],
@@ -207,7 +211,9 @@
                extend: 'pdf',
                title: 'Drug List'
             },
-            'print'
+
+            'print',
+
          ]
    });
 } );
