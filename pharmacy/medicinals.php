@@ -188,7 +188,7 @@
 
         
     $('#table_id').DataTable({
-        "searching":false,
+        "searching":true,
         "paging":true,
         "order":false,
       dom: 'Bfrtip',

@@ -9,10 +9,10 @@
     if(isset($_POST['proceed'])){
         
      $report =$_POST['report'];
-     if($report =='sales_ledger'){
+     if($report =='income_ledger'){
            echo'<script>window.location.href="../admin/sales_report.php"</script>';
 
-     }elseif($report =='purchase_ledger'){
+     }elseif($report =='expenses_ledger'){
         echo'<script>window.location.href="../admin/purchase_report.php"</script>';
      }elseif($report =='general_ledger'){
         echo"<script>alert('This is the general ledger')</script>";
@@ -226,7 +226,9 @@
             <select name="report">
                 <option value="sales_ledger">Sales Ledger</option>
                 <option value="purchase_ledger">Purchase Ledger</option>
-                <option value="general_ledger">General Ledger</option>
+                <option value="expenses_ledger">Expenses Report</option>
+                <option value="income_ledger">Income Report</option>
+                <option value="income_expend_ledger">Income & Expenditure</option>
                 <option value="assets">Assets</option>
                 <option value="stock">Stock</option>
                 <option value="operating_expenses">Operating Expenses</option>

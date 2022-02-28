@@ -7,7 +7,7 @@
   	$password= $_POST['pass'];
   	$usertype =$_POST['usertype'];
     
-    $query = "SELECT * FROM multi_login WHERE username ='$username' AND password ='$password' AND usertype ='$usertype'";
+    $query = "SELECT * FROM staff_table WHERE username ='$username' AND password ='$password' AND usertype ='$usertype'";
     $res =mysqli_query($connect, $query) or die(mysqli_error($connect));
     $row =mysqli_fetch_array($res);
     $uname = $row['username'];
@@ -20,7 +20,7 @@
     		$_SESSION['admin']=$uname;
         // echo"<script>alert('welcome to the admin page ')</script>";
          ?>
-       	<script>window.location.href="../home/admin/index.php"</script>
+       	<script>window.location.href="../home/admin2/index.php"</script>
        	<?php
     	}else if($row['usertype'] ==='doctor'){
     		$_SESSION['doctor']=$uname;

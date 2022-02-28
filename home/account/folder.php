@@ -239,7 +239,7 @@
              <input type="text" name="pname" placeholder="Enter Patients Name" required><br>
              <label>Payment Mode</label><br>
              <select class="accountselect" id="wardselected" name="payment_mode" style="">
-                 <option value="cash">Cash</option>
+                 <option value="cash">money</option>
                  <option value="momo">Momo </option>
                  <option value="visa">Visa</option>
                  <option value="cheque">Cheque</option>

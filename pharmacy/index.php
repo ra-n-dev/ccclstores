@@ -11,6 +11,7 @@
 	<title>pharmacy dashboard</title>
 </head>
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
@@ -463,27 +464,85 @@
 	</div>
 
 
+  <div id="regions_div" style="width: 900px; height: 500px;"></div>
+
 </div>
+
+
 
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Drugs', 'Sales per Month'],
-          ['Tabs',     11],
-          ['Capsules',      2],
-          ['Syrups',  2],
-          ['Injectables', 2],
-          ['Lab',    7]
+        
+            ['Year', 'Sales', 'Expenses', 'Profit'],
+
+           <?php 
+              $queryy ="SELECT * FROM drugbarchart";
+              $ress =mysqli_query($connect, $queryy);
+
+              while($row =mysqli_fetch_array($ress)){
+                    $year =$row['year'];
+                    $sales =$row['sales'];
+                    $expenses =$row['expenses'];
+                    $profit =$row['profit'];
+                    ?>
+                    ['<?php echo $year;?>',<?php echo $sales; ?>,<?php echo $expenses;?>,<?php echo $profit;?>],
+                    <?php
+                   }
+
+            ?>
         ]);
 
         var options = {
-          title: 'Fast Moving Categories of Drugs',
+          title: 'Most Profitable Month ',
           pieHole: 0.4,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
+
+
+       <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['corechart'],
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+          var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses', 'Profit'],
+
+           <?php 
+              $queryy ="SELECT * FROM drugbarchart";
+              $ress =mysqli_query($connect, $queryy);
+
+              while($row =mysqli_fetch_array($ress)){
+                    $year =$row['year'];
+                    $sales =$row['sales'];
+                    $expenses =$row['expenses'];
+                    $profit =$row['profit'];
+                    ?>
+                    ['<?php echo $year;?>',<?php echo $sales; ?>,<?php echo $expenses;?>,<?php echo $profit;?>],
+                    <?php
+                   }
+
+            ?>
+        ]);
+
+        var options = {
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('regions_div'));
+
         chart.draw(data, options);
       }
     </script>

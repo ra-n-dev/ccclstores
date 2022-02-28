@@ -37,8 +37,7 @@
              $res = mysqli_query($connect,$query);
 
              echo"<table cellspacing=0 cellpadding =1 border=1  class='table1'>
-                
-
+    
                   <tr border=0.1>
                      <th style='border: 0.1pt double;background:#3090C7;color:white;padding-right:5px'>ID</th>
                      <th style='border:0.1pt double ;background:#3090C7;color:white;padding-right:5px'>Firstname</th>
