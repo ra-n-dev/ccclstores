@@ -28,10 +28,10 @@
                  $new_con = '['.$con.']';
 
 
-$qry ="SELECT * FROM staff_table";
-$rst =mysqli_query($connect,$qry) or die($connect);
-$row =mysqli_fetch_array($rst);
-$ssum =mysqli_num_rows($rst);
+//$qry ="SELECT * FROM staff_table";
+//$rst =mysqli_query($connect,$qry) or die($connect);
+//$row =mysqli_fetch_array($rst);
+//$ssum =mysqli_num_rows($rst);
 //echo"$ssum";
 
 $qryy ="SELECT * FROM customers_table";
@@ -87,7 +87,7 @@ foreach ($wrs as $row) {
     $firstDayNextMonth = date('Y-m-d', strtotime('first day of next month'));
     
 
-
+/*
     $try ="SELECT * FROM cash_inflow_book WHERE pay_date BETWEEN '$first' AND '$last' " ;
     $trial = mysqli_query($connect,$try);
     $row =mysqli_fetch_array($trial);
@@ -114,7 +114,7 @@ foreach ($wrs as $row) {
     }else{
         echo"No data available";
     }
-
+*/
 
 
 
@@ -127,7 +127,7 @@ foreach ($wrs as $row) {
     $ma2 = date('Y-m-d',strtotime('last day of December ' . date('Y')));
     
 
-
+/*
     $endofyear ="SELECT * FROM cash_inflow_book WHERE pay_date BETWEEN '$ma1' AND '$ma2' " ;
     $yeardata = mysqli_query($connect,$endofyear);
     $row =mysqli_fetch_array($yeardata);
@@ -155,7 +155,7 @@ foreach ($wrs as $row) {
     }else{
         echo"No data available";
     }
-
+*/
 
 
 
@@ -177,7 +177,6 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
     
     $date2 =explode("-",$date1);
     $date3 =implode("",$date2);
-    //array_push($date_income,$date3);
     array_push($monthly_income,$incom);
 
    
@@ -185,10 +184,7 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
 
   $final ='['. implode(',',$monthly_income).']';
   $date_final = implode(',',$date_income);
- // echo gettype($date_final[1]);
 
- // print_r($final);
- // print_r($date_final);
 
 
 
@@ -213,8 +209,6 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
         }
 
 
-    }else{
-        echo"No data available";
     }
 
     // look above this codes makes sense.
@@ -236,25 +230,24 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
         }
 
 
-    }else{
-        echo"No data available";
     }
 
 
 
 
-    $quer ="SELECT * FROM expenditure_request_table WHERE request_date BETWEEN '$first' AND '$last' AND request_status ='pending' ";
-     $reess =mysqli_query($connect, $quer);
-     $pedreq =mysqli_num_rows($reess);
+    //$quer ="SELECT * FROM expenditure_request_table WHERE request_date BETWEEN '$first' AND '$last' AND request_status ='pending' ";
+    // $reess =mysqli_query($connect, $quer);
+     //$pedreq =mysqli_num_rows($reess);
 
 
-   $month_expenses =$normal_expenses;
-   $monthly_net =$sum - $month_expenses
+   //$month_expenses =$normal_expenses;
+   //$monthly_net =$sum - $month_expenses
 
 
         ?> 
 
         <!-- Content Wrapper -->
+        <!-- Paul Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -496,10 +489,11 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo"GHC $sum.00" ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id='sum'></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -514,7 +508,7 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo"GHC $yearsum.00" ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="yearsum"></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -575,7 +569,7 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">
                                                 Total Staffs</div>
-                                            <div class="h5 mb-0 text-center font-weight-bold  sta"><?php echo "$ssum" ?></div>
+                                            <div class="h5 mb-0 text-center font-weight-bold  sta" id="staff"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -619,7 +613,6 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -634,10 +627,9 @@ $pay ="select date_format(pay_date,'%Y-%m'),sum(income) from cash_inflow_book WH
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Pending Expenses Request</div>
-                                            <div class="h5 mb-0 text-center font-weight-bold text-gray-800"><?php echo $pedreq; ?></div>
+                                            <div class="h5 mb-0 text-center font-weight-bold text-gray-800" id="ex_id"></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -897,7 +889,26 @@ var myLineChart = new Chart(ctx, {
 
     </script>
 
-   
+   <script type="text/javascript">
+    setInterval((
+        ()=>{
+
+             $.post("test.php",{sum:1},(res,stcode)=>{
+               
+                let data=res.split(",")
+             $("#sum").html("GH&cent"+data[0]);
+             $("#yearsum").html("GH&cent"+data[1]);
+             $("#staff").html(data[2]);
+             $("#ex_id").html(data[3]);
+
+             })
+ 
+        }
+
+        ),2000)
+    
+       
+   </script>
 
     
 

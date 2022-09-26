@@ -67,6 +67,9 @@ include("../../db/connection.php");
  </head>
 
  <style type="text/css">
+
+
+
      .adminexpense{
 
         margin-top: 10%;
@@ -122,14 +125,20 @@ include("../../db/connection.php");
         height: 2em;
     
      }
+
+     .sideb{
+        background: #2C3E50;
+        overflow-y: scroll;
+
+     }
  </style>
  <body>
  
  
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sideb  sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -169,7 +178,7 @@ include("../../db/connection.php");
                         <a class="collapse-item" href="services.php">Services</a>
                         <a class="collapse-item" href="#" data-toggle="modal" data-target="#expensesModal">Make Expense</a>
                         <a class="collapse-item" href="requested_expenses.php">Requested Expenses</a>
-                        <a class="collapse-item" href="staff.php">Staff</a>
+                        <a class="collapse-item" href="staff_list.php">Staff</a>
                         <a class="collapse-item" href="forgot-password.html">Equipments</a>
                         <div class="collapse-divider"></div>                        
                      </div>
@@ -186,9 +195,9 @@ include("../../db/connection.php");
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Accounting Reports:</h6>
-                        <a class="collapse-item" href="buttons.html">Income</a>
-                        <a class="collapse-item" href="cards.html">Expenditure</a>
-                        <a class="collapse-item" href="cards.html">Income & Expenditure</a>
+                        <a class="collapse-item" href="income_statement.php">Income Statement</a>
+                        <a class="collapse-item" href="new_dashboard.php">Expenditure</a>
+                        <a class="collapse-item" href="dashboard/index.php">Income & Expenditure</a>
                         <h6 class="collapse-header">Other Reports:</h6>
                         <a class="collapse-item" href="buttons.html">Drug List</a>
                         <a class="collapse-item" href="cards.html">Equipment List</a>
@@ -316,7 +325,6 @@ include("../../db/connection.php");
                 </div>
                 <div class="modal-footer bg-gradient-primary sub">
                      <div class="subb justify-content-center">
-                       <!-- <input type="submit" name="expense" value="Request">-->
                         <button class="btn  canc btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn pro btn-secondary " name="adminexpense" type="submit">Proceed</button>                          
                       
@@ -327,9 +335,6 @@ include("../../db/connection.php");
             </div>
         </div>
     </div>
-
-
-
 <div class='modal fade adx' id='addservices' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel'aria-hidden='true'>
                         <div class='modal-dialog' role='document'>
                              <div class='modal-content'>

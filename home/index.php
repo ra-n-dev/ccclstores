@@ -81,6 +81,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Homepage</title>
+	    <link rel="icon" href="../image/cccl4.png">
+
 </head>
 <style type="text/css">
 	body{

@@ -33,9 +33,12 @@
     .sta{
         color: green;
     }
+
+        
 </style>
 
-<body id="page-top">
+<body id="page-top" class="amm" >
 
     <!-- Page Wrapper -->
     <div id="wrapper">
+       
